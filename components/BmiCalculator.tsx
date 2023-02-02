@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
-import Constants from 'expo-constants';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
 const BmiCalculator = () => {
     const [weight, setWeight] = useState('');
@@ -28,86 +27,42 @@ const BmiCalculator = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.title}>
-                <Text style={styles.titleText}>BMI Calculator</Text>
-            </View>
-            <TextInput 
+            <Text>Enter you weight</Text>
+            <TextInput
                 style={styles.input}
-                value={weight}
-                onChangeText={(text) => setWeight(text)}
-                placeholder= "Weight in kg"
-                keyboardType= 'numeric'
-            />
-            <TextInput 
+                placeholder='Input your weight'
+                onChangeText={(val) => setWeight(val)}
+            ></TextInput>
+
+            <Text>Enter you height</Text>
+            <TextInput
                 style={styles.input}
-                value={height}
-                onChangeText={(text) => setHeight(text)}
-                placeholder= "height in cm"
-                keyboardType= 'numeric'
-            />
-            <TouchableOpacity
-                style={styles.button}
-                onPress={calculateBmi}
-            >
-                <Text style={styles.buttonText}>Calculate BMI</Text>
-            </TouchableOpacity>
-            <View style={styles.resultView}>
-                <Text style={styles.result}>{bmi}</Text>
-                <Text style={styles.result}>{bmiResult}</Text>
-            </View>
+                placeholder='Input your height'
+                onChangeText={(val) => setHeight(val)}
+            ></TextInput>
+        
+            <Button  title='Calculate' onPress={calculateBmi}/>
+        
+            <Text>{bmi}</Text>
+            <Text>{bmiResult}</Text>
         </View>
-    )
+      );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Constants.statusBarHeight,
-        backgroundColor: '#e0ecde'
-    },
-    title: {
-        backgroundColor: '#2c6975',
-        height: 80,
-        justifyContent: 'center',
+        backgroundColor: '#fff',
         alignItems: 'center',
-        marginBottom: 10,
-    },
-    titleText: {
-        fontSize: 30,
-        color: '#fff',
-        fontWeight: 'bold'
+        justifyContent: 'center',
     },
     input: {
-        height: 55,
-        margin: 15,
-        borderWidth: 1/2,
-        padding: 10,
-        borderRadius: 5,
-        backgroundColor: '#cde0c9',
-        fontSize: 18
+        borderWidth: 1,
+        borderColor: '#777',
+        padding: 0,
+        margin: 10,
+        width: 200,
     },
-    button: {
-        height: 55,
-        margin: 15, 
-        borderWidth: 1/2,
-        borderRadius: 5,
-        backgroundColor: '#68b2a0',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    buttonText: {
-        fontSize: 20,
-        color: '#fff',
-        fontWeight: 'bold'
-    },
-    resultView: {
-        margin: 15,
-    },
-    result: {
-        fontSize: 30,
-        color: '#2c6975',
-        fontWeight: 'bold'
-    }
 });
 
 export default BmiCalculator;
